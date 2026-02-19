@@ -83,7 +83,63 @@ class Customer:
 
 class Reservation:
     """Reservation linking a customer to hotel."""
-    pass
+    def __init__(
+        self,
+        reservation_id: str,
+        customer_id: str,
+        hotel_id: str,
+        rooms: list[int],
+        check_in: str,
+        check_out: str
+    ) -> None:
+        """Create reservation entity."""
+        self.reservation_id = reservation_id
+        self.customer_id = customer_id
+        self.hotel_id = hotel_id
+        self.rooms = rooms
+        self.check_in = check_in
+        self.check_out = check_out
+
+    def create(self) -> None:
+        """Create reservation and save on JSON."""
+        data = _load()
+        if self.reservation_id in data["reservations"]:
+            raise ValueError(
+                f"Reservation {self.reservation_id} already exists."
+            )
+        if self.customer_id not in data["customers"]:
+            raise ValueError(f"Customer {self.customer_id} not found.")
+        if self.hotel_id not in data["hotels"]:
+            raise ValueError(f"Hotel {self.hotel_id} not found.")
+
+        for room in self.rooms:
+            Hotel.reserve_room(self.hotel_id, room)
+            data = _load()
+
+        data["reservations"][self.reservation_id] = {
+            "customer_id": self.customer_id,
+            "hotel_id": self.hotel_id,
+            "rooms": self.rooms,
+            "check_in": self.check_in,
+            "check_out": self.check_out
+        }
+        _save(data)
+
+    @staticmethod
+    def cancel(reservation_id: str) -> None:
+        """Cancel a reservation."""
+        data = _load()
+        if reservation_id not in data["reservations"]:
+            raise ValueError(f"Reservation {reservation_id} not found.")
+        reservation = data["reservations"][reservation_id]
+
+        for room in reservation["rooms"]:
+            Hotel.cancel_room(reservation["hotel_id"], room)
+
+        data = _load()
+        del data["reservations"][reservation_id]
+        _save(data)
+
 
 
 class Hotel:
