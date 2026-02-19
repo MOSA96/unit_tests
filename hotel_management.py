@@ -3,7 +3,7 @@
 import json
 import os
 from typing import Optional
-
+from dataclasses import dataclass, field
 
 JSON_FILE = "hotel.json"
 
@@ -11,13 +11,13 @@ def _load() -> dict:
     """Load data from JSON file."""
     if not os.path.exists(JSON_FILE):
         return {"hotels": {}, "customers": {}, "reservations": {}}
-    with open(JSON_FILE, "r") as f:
+    with open(JSON_FILE, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
 def _save(data: dict) -> None:
     """Write data to JSON file."""
-    with open(JSON_FILE, "w") as f:
+    with open(JSON_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4)
 
 
@@ -36,7 +36,7 @@ class Customer:
         data = _load()
         if self.customer_id in data["customers"]:
             raise ValueError(f"Customer {self.customer_id} already exists.")
-        
+
         data["customers"][self.customer_id] = {
             "name": self.name,
             "email": self.email
@@ -50,7 +50,7 @@ class Customer:
         data = _load()
         if customer_id not in data["customers"]:
             raise ValueError(f"Customer {customer_id} not found.")
-        
+
         del data["customers"][customer_id]
         _save(data)
 
@@ -80,25 +80,15 @@ class Customer:
         _save(data)
 
 
-
+@dataclass(slots=True)
 class Reservation:
     """Reservation linking a customer to hotel."""
-    def __init__(
-        self,
-        reservation_id: str,
-        customer_id: str,
-        hotel_id: str,
-        rooms: list[int],
-        check_in: str,
-        check_out: str
-    ) -> None:
-        """Create reservation entity."""
-        self.reservation_id = reservation_id
-        self.customer_id = customer_id
-        self.hotel_id = hotel_id
-        self.rooms = rooms
-        self.check_in = check_in
-        self.check_out = check_out
+    reservation_id: str
+    customer_id: str
+    hotel_id: str
+    rooms: list[int] = field(default_factory=list)
+    check_in: str = ""
+    check_out: str = ""
 
     def create(self) -> None:
         """Create reservation and save on JSON."""
@@ -171,7 +161,7 @@ class Hotel:
         data = _load()
         if hotel_id not in data["hotels"]:
             raise ValueError(f"hotel {hotel_id} not found.")
-        
+
         del data["hotels"][hotel_id]
         _save(data)
 
