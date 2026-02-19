@@ -7,6 +7,7 @@ from dataclasses import dataclass, field
 
 JSON_FILE = "hotel.json"
 
+
 def _load() -> dict:
     """Load data from JSON file."""
     if not os.path.exists(JSON_FILE):
@@ -19,7 +20,6 @@ def _save(data: dict) -> None:
     """Write data to JSON file."""
     with open(JSON_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4)
-
 
 
 class Customer:
@@ -129,7 +129,6 @@ class Reservation:
         data = _load()
         del data["reservations"][reservation_id]
         _save(data)
-
 
 
 class Hotel:
