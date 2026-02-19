@@ -31,7 +31,7 @@ class TestLoad(unittest.TestCase):
     def test_load_existing_file(self) -> None:
         """Returns correct data when data file exists."""
         payload = {"hotels": {}, "customers": {"C1": {}}, "reservations": {}}
-        with open(JSON_FILE, "w") as f:
+        with open(JSON_FILE, "w", encoding="utf-8") as f:
             json.dump(payload, f)
         data = _load()
         self.assertIn("C1", data["customers"])
