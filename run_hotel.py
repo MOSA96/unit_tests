@@ -1,6 +1,10 @@
 """Script to load a JSON test file, run all hotel operations, and save."""
 
+import argparse
 import json
+import os
+import shutil
+from hotel_management import Customer, Hotel, Reservation, JSON_FILE
 
 
 def load_input(path: str) -> dict:
@@ -23,7 +27,7 @@ def run_customers(customers: dict) -> None:
             continue
 
         try:
-            Customer.display(customer_id)
+            Customer.display_customer_info(customer_id)
             print(f"  [OK] Displayed customer {customer_id}")
         except ValueError as e:
             print(f"  [FAIL] Display customer {customer_id}: {e}")
@@ -49,7 +53,7 @@ def run_hotels(hotels: dict) -> None:
             continue
 
         try:
-            Hotel.display(hotel_id)
+            Hotel.display_hotel_info(hotel_id)
             print(f"  [OK] Displayed hotel {hotel_id}")
         except ValueError as e:
             print(f"  [FAIL] Display hotel {hotel_id}: {e}")
@@ -107,3 +111,48 @@ def run_deletes(data: dict) -> None:
             print(f"  [OK] Deleted hotel {hotel_id}")
         except ValueError as e:
             print(f"  [FAIL] Delete hotel {hotel_id}: {e}")
+
+def main() -> None:
+    """Run all operations."""
+
+    parser = argparse.ArgumentParser(
+        description="Run hotel management operations from a JSON input file."
+    )
+    parser.add_argument(
+        "input_file",
+        help="Path to the input JSON file (e.g. test_valid.json)"
+    )
+    parser.add_argument(
+        "--output",
+        default="output.json",
+        help="Path to the output JSON file (default: output.json)"
+    )
+    args = parser.parse_args()
+
+    if not os.path.exists(args.input_file):
+        print(f"[ERROR] File not found: {args.input_file}")
+        return
+
+    if os.path.exists(JSON_FILE):
+        os.remove(JSON_FILE)
+
+    data = load_input(args.input_file)
+
+    print("\n--- Customers ---")
+    run_customers(data.get("customers", {}))
+
+    print("\n--- Hotels ---")
+    run_hotels(data.get("hotels", {}))
+
+    print("\n--- Reservations ---")
+    run_reservations(data.get("reservations", {}))
+
+    print("\n--- Deletes ---")
+    run_deletes(data)
+
+    shutil.copy(JSON_FILE, args.output)
+    print(f"\n[DONE] Final data saved to {args.output}")
+
+
+if __name__ == "__main__":
+    main()
