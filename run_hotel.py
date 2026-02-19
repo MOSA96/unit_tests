@@ -33,3 +33,36 @@ def run_customers(customers: dict) -> None:
             print(f"  [OK] Modified customer {customer_id}")
         except ValueError as e:
             print(f"  [FAIL] Modify customer {customer_id}: {e}")
+
+
+def run_hotels(hotels: dict) -> None:
+    """Create, display, modify, and reserve rooms for each hotel in input."""
+    for hotel_id, info in hotels.items():
+        name = info.get("name", "")
+        total_rooms = info.get("total_rooms", 0)
+
+        try:
+            Hotel(hotel_id, name, total_rooms).create()
+            print(f"  [OK] Created hotel {hotel_id}")
+        except ValueError as e:
+            print(f"  [FAIL] Create hotel {hotel_id}: {e}")
+            continue
+
+        try:
+            Hotel.display(hotel_id)
+            print(f"  [OK] Displayed hotel {hotel_id}")
+        except ValueError as e:
+            print(f"  [FAIL] Display hotel {hotel_id}: {e}")
+
+        try:
+            Hotel.modify(hotel_id, name=name + " (modified)")
+            print(f"  [OK] Modified hotel {hotel_id}")
+        except ValueError as e:
+            print(f"  [FAIL] Modify hotel {hotel_id}: {e}")
+
+        for room in info.get("reserved_rooms", []):
+            try:
+                Hotel.reserve_room(hotel_id, room)
+                print(f"  [OK] Reserved room {room} in hotel {hotel_id}")
+            except ValueError as e:
+                print(f"  [FAIL] Reserve room {room} in hotel {hotel_id}: {e}")
