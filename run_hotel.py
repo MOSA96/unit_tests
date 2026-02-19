@@ -9,7 +9,7 @@ from hotel_management import Customer, Hotel, Reservation, JSON_FILE
 
 def load_input(path: str) -> dict:
     """Load and return the JSON data from the given file path."""
-    with open(path, "r") as f:
+    with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
