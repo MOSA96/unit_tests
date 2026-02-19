@@ -82,7 +82,7 @@ class Customer:
 
 
 class Reservation:
-    """Reservation linking a customer to hotel rooms."""
+    """Reservation linking a customer to hotel."""
     pass
 
 
