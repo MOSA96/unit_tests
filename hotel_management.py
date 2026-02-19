@@ -15,7 +15,7 @@ def _load() -> dict:
         return json.load(f)
 
 
-def _save(JSON_FILE: str, data: dict) -> None:
+def _save(data: dict) -> None:
     """Write data to JSON file."""
     with open(JSON_FILE, "w") as f:
         json.dump(data, f, indent=4)
