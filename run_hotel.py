@@ -66,3 +66,44 @@ def run_hotels(hotels: dict) -> None:
                 print(f"  [OK] Reserved room {room} in hotel {hotel_id}")
             except ValueError as e:
                 print(f"  [FAIL] Reserve room {room} in hotel {hotel_id}: {e}")
+
+def run_reservations(reservations: dict) -> None:
+    """Create and cancel each reservation in the input."""
+    for reservation_id, info in reservations.items():
+        customer_id = info.get("customer_id", "")
+        hotel_id = info.get("hotel_id", "")
+        rooms = info.get("rooms", [])
+        check_in = info.get("check_in", "")
+        check_out = info.get("check_out", "")
+
+        try:
+            Reservation(
+                reservation_id, customer_id, hotel_id,
+                rooms, check_in, check_out
+            ).create()
+            print(f"  [OK] Created reservation {reservation_id}")
+        except ValueError as e:
+            print(f"  [FAIL] Create reservation {reservation_id}: {e}")
+            continue
+
+        try:
+            Reservation.cancel(reservation_id)
+            print(f"  [OK] Cancelled reservation {reservation_id}")
+        except ValueError as e:
+            print(f"  [FAIL] Cancel reservation {reservation_id}: {e}")
+
+def run_deletes(data: dict) -> None:
+    """Delete all customers and hotels that were successfully created."""
+    for customer_id in data.get("customers", {}):
+        try:
+            Customer.delete(customer_id)
+            print(f"  [OK] Deleted customer {customer_id}")
+        except ValueError as e:
+            print(f"  [FAIL] Delete customer {customer_id}: {e}")
+
+    for hotel_id in data.get("hotels", {}):
+        try:
+            Hotel.delete(hotel_id)
+            print(f"  [OK] Deleted hotel {hotel_id}")
+        except ValueError as e:
+            print(f"  [FAIL] Delete hotel {hotel_id}: {e}")
