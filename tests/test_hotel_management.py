@@ -3,7 +3,7 @@
 import unittest
 import os
 import json
-from hotel_management import (
+from src.hotel_management import (
     Customer, Hotel, Reservation, JSON_FILE, _load
 )
 
