@@ -1,0 +1,54 @@
+--- Customers ---
+  [OK] Created customer C1
+{'name': 'Alice Johnson', 'email': 'not-an-email'}
+  [OK] Displayed customer C1
+  [OK] Modified customer C1
+  [OK] Created customer C2
+{'name': '', 'email': 'bob@example.com'}
+  [OK] Displayed customer C2
+  [OK] Modified customer C2
+  [OK] Created customer C3
+{'name': 'Carol White', 'email': ''}
+  [OK] Displayed customer C3
+  [OK] Modified customer C3
+  [OK] Created customer C4
+{'name': '12345', 'email': 'david@example.com'}
+  [OK] Displayed customer C4
+  [OK] Modified customer C4
+  [OK] Created customer C5
+{'name': 'Eva Green', 'email': ''}
+  [OK] Displayed customer C5
+  [OK] Modified customer C5
+
+--- Hotels ---
+  [OK] Created hotel H1
+{'name': '', 'total_rooms': 10, 'reserved_rooms': []}
+  [OK] Displayed hotel H1
+  [OK] Modified hotel H1
+  [OK] Reserved room 1 in hotel H1
+  [OK] Reserved room 2 in hotel H1
+  [OK] Created hotel H2
+{'name': 'Sea View Resort', 'total_rooms': -5, 'reserved_rooms': []}
+  [OK] Displayed hotel H2
+  [OK] Modified hotel H2
+  [OK] Created hotel H3
+{'name': 'Mountain Lodge', 'total_rooms': 5, 'reserved_rooms': []}
+  [OK] Displayed hotel H3
+  [OK] Modified hotel H3
+  [FAIL] Reserve room 99 in hotel H3: Room 99 does not exist.
+
+--- Reservations ---
+  [FAIL] Create reservation R1: Customer C99 not found.
+  [FAIL] Create reservation R2: Hotel H99 not found.
+  [OK] Created reservation R3
+  [OK] Cancelled reservation R3
+
+--- Deletes ---
+  [OK] Deleted customer C1
+  [OK] Deleted customer C2
+  [OK] Deleted customer C3
+  [OK] Deleted customer C4
+  [OK] Deleted customer C5
+  [OK] Deleted hotel H1
+  [OK] Deleted hotel H2
+  [OK] Deleted hotel H3

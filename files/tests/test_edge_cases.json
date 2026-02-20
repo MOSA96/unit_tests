@@ -1,0 +1,69 @@
+{
+    "customers": {
+        "C1": {"name": "A", "email": "a@b.co"},
+        "C1": {"name": "Duplicate ID", "email": "dup@example.com"},
+        "C2": {"name": "   ", "email": "   "},
+        "C3": {
+            "name": "Very Long Name That Goes On And On And On And On",
+            "email": "very.long.email.address.that.goes.on@very.long.domain.example.com"
+        },
+        "": {"name": "Empty ID Customer", "email": "empty@example.com"}
+    },
+    "hotels": {
+        "H1": {
+            "name": "Full Hotel",
+            "total_rooms": 3,
+            "reserved_rooms": [1, 2, 3]
+        },
+        "H2": {
+            "name": "Empty Hotel",
+            "total_rooms": 10,
+            "reserved_rooms": []
+        },
+        "H3": {
+            "name": "One Room Hotel",
+            "total_rooms": 1,
+            "reserved_rooms": []
+        },
+        "H1": {
+            "name": "Duplicate Hotel ID",
+            "total_rooms": 5,
+            "reserved_rooms": []
+        },
+        "": {
+            "name": "Empty ID Hotel",
+            "total_rooms": 5,
+            "reserved_rooms": []
+        }
+    },
+    "reservations": {
+        "R1": {
+            "customer_id": "C1",
+            "hotel_id": "H1",
+            "rooms": [1, 2, 3],
+            "check_in": "2026-03-01",
+            "check_out": "2026-03-01"
+        },
+        "R2": {
+            "customer_id": "C1",
+            "hotel_id": "H2",
+            "rooms": [1, 1, 1],
+            "check_in": "2026-04-01",
+            "check_out": "2026-04-10"
+        },
+        "R3": {
+            "customer_id": "C2",
+            "hotel_id": "H3",
+            "rooms": [1],
+            "check_in": "2026-05-01",
+            "check_out": "2026-05-02"
+        },
+        "": {
+            "customer_id": "C1",
+            "hotel_id": "H2",
+            "rooms": [],
+            "check_in": "",
+            "check_out": ""
+        }
+    }
+}

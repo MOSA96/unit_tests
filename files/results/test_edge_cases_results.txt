@@ -1,0 +1,54 @@
+--- Customers ---
+  [OK] Created customer C1
+{'name': 'Duplicate ID', 'email': 'dup@example.com'}
+  [OK] Displayed customer C1
+  [OK] Modified customer C1
+  [OK] Created customer C2
+{'name': '   ', 'email': '   '}
+  [OK] Displayed customer C2
+  [OK] Modified customer C2
+  [OK] Created customer C3
+{'name': 'Very Long Name That Goes On And On And On And On', 'email': 'very.long.email.address.that.goes.on@very.long.domain.example.com'}
+  [OK] Displayed customer C3
+  [OK] Modified customer C3
+  [OK] Created customer 
+{'name': 'Empty ID Customer', 'email': 'empty@example.com'}
+  [OK] Displayed customer 
+  [OK] Modified customer 
+
+--- Hotels ---
+  [OK] Created hotel H1
+{'name': 'Duplicate Hotel ID', 'total_rooms': 5, 'reserved_rooms': []}
+  [OK] Displayed hotel H1
+  [OK] Modified hotel H1
+  [OK] Created hotel H2
+{'name': 'Empty Hotel', 'total_rooms': 10, 'reserved_rooms': []}
+  [OK] Displayed hotel H2
+  [OK] Modified hotel H2
+  [OK] Created hotel H3
+{'name': 'One Room Hotel', 'total_rooms': 1, 'reserved_rooms': []}
+  [OK] Displayed hotel H3
+  [OK] Modified hotel H3
+  [OK] Created hotel 
+{'name': 'Empty ID Hotel', 'total_rooms': 5, 'reserved_rooms': []}
+  [OK] Displayed hotel 
+  [OK] Modified hotel 
+
+--- Reservations ---
+  [OK] Created reservation R1
+  [OK] Cancelled reservation R1
+  [FAIL] Create reservation R2: Room 1 is already reserved.
+  [OK] Created reservation R3
+  [OK] Cancelled reservation R3
+  [OK] Created reservation 
+  [OK] Cancelled reservation 
+
+--- Deletes ---
+  [OK] Deleted customer C1
+  [OK] Deleted customer C2
+  [OK] Deleted customer C3
+  [OK] Deleted customer 
+  [OK] Deleted hotel H1
+  [OK] Deleted hotel H2
+  [OK] Deleted hotel H3
+  [OK] Deleted hotel 

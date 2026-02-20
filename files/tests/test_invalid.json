@@ -1,0 +1,49 @@
+{
+    "customers": {
+        "C1": {"name": "Alice Johnson", "email": "not-an-email"},
+        "C2": {"name": "", "email": "bob@example.com"},
+        "C3": {"name": "Carol White", "email": ""},
+        "C4": {"name": 12345, "email": "david@example.com"},
+        "C5": {"name": "Eva Green"}
+    },
+    "hotels": {
+        "H1": {
+            "name": "",
+            "total_rooms": 10,
+            "reserved_rooms": [1, 2]
+        },
+        "H2": {
+            "name": "Sea View Resort",
+            "total_rooms": -5,
+            "reserved_rooms": []
+        },
+        "H3": {
+            "name": "Mountain Lodge",
+            "total_rooms": 5,
+            "reserved_rooms": [99]
+        }
+    },
+    "reservations": {
+        "R1": {
+            "customer_id": "C99",
+            "hotel_id": "H1",
+            "rooms": [1],
+            "check_in": "2026-03-01",
+            "check_out": "2026-03-05"
+        },
+        "R2": {
+            "customer_id": "C1",
+            "hotel_id": "H99",
+            "rooms": [1],
+            "check_in": "2026-04-10",
+            "check_out": "2026-04-15"
+        },
+        "R3": {
+            "customer_id": "C1",
+            "hotel_id": "H1",
+            "rooms": [],
+            "check_in": "2026-05-01",
+            "check_out": "2026-04-01"
+        }
+    }
+}

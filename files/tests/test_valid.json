@@ -1,0 +1,49 @@
+{
+    "customers": {
+        "C1": {"name": "Alice Johnson", "email": "alice@example.com"},
+        "C2": {"name": "Bob Smith", "email": "bob@example.com"},
+        "C3": {"name": "Carol White", "email": "carol@example.com"},
+        "C4": {"name": "David Brown", "email": "david@example.com"},
+        "C5": {"name": "Eva Green", "email": "eva@example.com"}
+    },
+    "hotels": {
+        "H1": {
+            "name": "Grand Palace",
+            "total_rooms": 10,
+            "reserved_rooms": [1, 2]
+        },
+        "H2": {
+            "name": "Sea View Resort",
+            "total_rooms": 20,
+            "reserved_rooms": [5, 10, 15]
+        },
+        "H3": {
+            "name": "Mountain Lodge",
+            "total_rooms": 5,
+            "reserved_rooms": []
+        }
+    },
+    "reservations": {
+        "R1": {
+            "customer_id": "C1",
+            "hotel_id": "H1",
+            "rooms": [1, 2],
+            "check_in": "2026-03-01",
+            "check_out": "2026-03-05"
+        },
+        "R2": {
+            "customer_id": "C2",
+            "hotel_id": "H2",
+            "rooms": [5, 10],
+            "check_in": "2026-04-10",
+            "check_out": "2026-04-15"
+        },
+        "R3": {
+            "customer_id": "C3",
+            "hotel_id": "H2",
+            "rooms": [15],
+            "check_in": "2026-05-01",
+            "check_out": "2026-05-03"
+        }
+    }
+}
